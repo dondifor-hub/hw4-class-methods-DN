@@ -23,17 +23,64 @@
  *      This should not return anything, but should modify the original array using the `invert` method.
  */
 
+export class Pixel {
+    private red: number;
+    private green: number;
+    private blue: number;   
 
+    constructor(red: number, green: number, blue: number) {
+        this.red = this.clamp(red);
+        this.green = this.clamp(green);
+        this.blue = this.clamp(blue);
+    }
 
+    private clamp(value: number): number {
+        if (value < 0) {
+            return 0;
+        } else if (value > 255) {
+            return 255;
+        }
+        return value;
+    }
 
+    update(red: number, green: number, blue: number) {
+        this.red = this.clamp(red);
+        this.green = this.clamp(green);
+        this.blue = this.clamp(blue);
+    }
 
+    getRGB(): string {
+        return `rgb(${this.red}, ${this.green}, ${this.blue})`;
+    }
 
+    makeGrayscale() {
+        const average = Math.round((this.red + this.green + this.blue) / 3);
+        this.red = average;
+        this.green = average;
+        this.blue = average;
 
+    }
+
+    invert() {
+        this.red = 255 - this.red;
+        this.green = 255 - this.green;
+        this.blue = 255 - this.blue;
+    }
+
+}
 
 /**
  * Invert all the pixels of a 2D array of Pixels.
  * @param pixels 2D array of Pixels
  * @modifies pixels
  */
+
+
 export function invertPixels(pixels: Pixel[][]): void {
+    for (let i = 0; i < pixels.length; i++) {
+        for (let j = 0; j < pixels[i].length; j++) {
+            pixels[i][j].invert();
+        }
+    }
 }
+

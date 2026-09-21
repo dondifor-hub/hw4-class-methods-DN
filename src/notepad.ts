@@ -15,3 +15,32 @@
  * 3.6. Create a NotePad method named `clone` that returns a new NotePad object with the same title and notes, but a separate
  *      copy of the notes array. This means that if you change the notes of the original notepad, the notes of the clone should not change.
  */
+
+export class NotePad { 
+    public title: string;
+    public notes: string[];
+
+    constructor(title: string, notes: string[]) {
+        this.title = title;
+        this.notes = notes;
+    }
+
+    add(note: string) {
+        if (note !== "") {
+            this.notes.push(note);
+        }
+    }
+
+    getNotes() {
+        return this.notes.join("\n");
+    }
+
+    getPriorityNotes() {
+        const priorityNotes = this.notes.filter(note => note.includes("priority"));
+        return priorityNotes.join("\n");
+    }
+
+    clone() {
+        return new NotePad(this.title, [...this.notes]);
+    }
+}

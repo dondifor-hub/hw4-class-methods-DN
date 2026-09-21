@@ -18,3 +18,34 @@
  *      the title is "Dr.", then the result is "Dr. Bart".
  * 1.6. Create a Person method named `clone` that returns a new Person object with the same first name, last name, and age.
  */
+
+export class Person {
+    getAge() {
+        return this.age;
+    } 
+    private firstName: string;
+    private lastName: string;
+    public age: number;
+
+    constructor(firstName: string, lastName: string, age: number) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.age = age;
+    }
+
+    getDogYears() {
+        return this.age * 7;
+    }
+
+    getFullName() {
+        return `${this.firstName} ${this.lastName}`;
+    }
+
+    withTitle(title: string) {
+        return `${title} ${this.lastName}`;
+    }
+
+    clone() {
+        return new Person(this.firstName, this.lastName, this.age);
+    }
+}

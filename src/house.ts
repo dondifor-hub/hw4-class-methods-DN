@@ -22,3 +22,35 @@
  *      the clone should not change. HINT: use the Person's clone method!
  * 
  */
+
+import { Person } from "./person";
+
+export class House { 
+    public owner: Person;
+    public address: string;
+    
+
+    constructor(owner: Person, address: string) {
+        this.owner = owner;
+        this.address = address;
+    }
+
+    toString() {
+        return `This house is owned by ${this.owner.getFullName()} and is located at ${this.address}`;
+    }
+
+    buyFrom(person: Person) {
+        if (Number(person.getAge()) < 18) {
+            return `Sorry, ${person.getFullName()} is too young to buy a house!`;
+        } else {
+            this.owner = person;
+            return `${person.getFullName()} bought the house!`;
+        }
+    }
+
+    clone(): House {
+        const cloneOwner = this.owner.clone();
+        return new House(cloneOwner, this.address);
+    }
+
+}

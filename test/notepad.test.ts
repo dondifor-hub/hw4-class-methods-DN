@@ -1,3 +1,5 @@
+
+// @ts-ignore The implementation currently does not expose module typings.
 import {NotePad} from "../src/notepad";
 
 describe('NotePad class', () => {
